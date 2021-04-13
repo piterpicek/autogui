@@ -6,8 +6,7 @@
 adduser fm
 
 ## Create Password user
-# echo Lalapo123 | passwd fm --stdin
-echo 'fm:Lalapo123' | chpasswd
+passwd fm
 
 ## add to group sudoers
 usermod -aG wheel fm
