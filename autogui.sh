@@ -11,8 +11,11 @@ passwd fm
 ## add to group sudoers
 usermod -aG wheel fm
 
+yum update -y
+
 ## Install epel tools
 yum install epel-release -y
+yum install setroubleshoot setools -y
 
 ## Install GUI server tools
 yum groupinstall "Server with GUI" -y
@@ -34,6 +37,7 @@ systemctl get-default
 
 ## Install X RDP for connect from RDP Remote
 yum -y install xrdp
+
 systemctl enable xrdp
 systemctl start xrdp
 
@@ -45,11 +49,12 @@ firewall-cmd --reload
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
 yum install ./google-chrome-stable_current_*.rpm -y
 
-## Switch to New USER
-su - fm
-
 #echo "exec /usr/bin/xfce4-session" >> ~/.xinitrc
 #startx 
 
-echo "xfce4-session" > ~/.Xclients
-chmod a+x ~/.Xclients
+echo "xfce4-session" > /home/fm/.Xclients
+chmod a+x /home/fm/.Xclients
+chown fm:fm /home/fm/.Xclients
+
+## Switch to New USER
+su - fm
